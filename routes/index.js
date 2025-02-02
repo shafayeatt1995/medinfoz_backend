@@ -4,6 +4,7 @@ const router = express.Router();
 
 router.use("/auth", require("./auth"));
 router.use("/scrap", require("./scrap"));
+router.use("/fetch", require("./fetch"));
 
 router.use(isAuthenticated);
 router.use("/user", require("./user"));

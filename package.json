@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "dev2": "PORT=3000 node app.js",
     "dev": "nodemon app.js",
     "start": "NODE_ENV=production node app.js"
   },
@@ -21,7 +22,9 @@
     "passport": "^0.7.0",
     "passport-google-oauth2": "^0.2.0",
     "puppeteer": "^23.11.1",
+    "sharp": "^0.33.5",
     "sound-play": "^1.1.0",
+    "uploadthing": "^6.1.0",
     "xlsx": "^0.18.5"
   }
 }

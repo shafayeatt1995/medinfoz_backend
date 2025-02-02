@@ -7,6 +7,7 @@ const MedicineSchema = new Schema(
     name: { type: String, required: true },
     slug: { type: String, unique: true, required: true },
     image: { type: String, default: "" },
+    img: { type: String, default: "" },
     type: { type: String, required: true },
     typeImage: { type: String, required: true },
     category: { type: String, required: true },
