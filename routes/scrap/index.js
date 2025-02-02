@@ -869,5 +869,37 @@ router.get("/upload-doctor-image", async (req, res) => {
     return res.status(500).json(parseError(error));
   }
 });
+router.get("/translate-medicine", async (req, res) => {
+  try {
+    const medicines = await Medicine.find()
+      .skip(0)
+      .limit(1)
+      .select({ slug: 1 });
+    const browser = await puppeteer.launch({
+      headless: false,
+      defaultViewport: null,
+    });
+    const page = await browser.newPage();
+
+    for (const medicine of medicines) {
+      console.log(medicine);
+      const url = `https://medinfoz-xyz.translate.goog/medicine/${medicine.slug}?_x_tr_sl=en&_x_tr_tl=bn&_x_tr_hl=en&_x_tr_pto=wapp`;
+      await page.goto(url, { waitUntil: "networkidle2" });
+      const height = await page.evaluate(() => document.body.scrollHeight);
+      await page.evaluate((y) => window.scrollTo(0, y), height / 3);
+      await sleep(500);
+      await page.evaluate((y) => window.scrollTo(0, y), (height * 2) / 3);
+      await sleep(500);
+      await page.evaluate((y) => window.scrollTo(0, y), height);
+      await sleep(500);
+    }
+    res.send("ok");
+  } catch (error) {
+    const filePath = path.join(__dirname, "error.mp3");
+    sound.play(filePath);
+    console.error(error);
+    return res.status(500).json(parseError(error));
+  }
+});
 
 module.exports = router;

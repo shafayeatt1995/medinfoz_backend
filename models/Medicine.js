@@ -16,6 +16,7 @@ const MedicineSchema = new Schema(
     package: { type: String, default: "" },
     relatedMedicine: { type: Schema.Types.Mixed, default: null },
     content: { type: Schema.Types.Mixed, required: true },
+    bnContent: { type: Schema.Types.Mixed, default: "" },
     url: { type: String, required: true },
   },
   { strict: true }

@@ -11,7 +11,11 @@ const port = parseInt(process.env.PORT || "8000", 10);
 
 app.use(
   cors({
-    origin: [process.env.BASE_URL, "http://localhost:8080"],
+    origin: [
+      process.env.BASE_URL,
+      "http://localhost:8080",
+      "https://medinfoz.xyz",
+    ],
     credentials: true,
   })
 );
